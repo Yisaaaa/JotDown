@@ -1,0 +1,38 @@
+.editor {
+	height: 100%;
+}
+
+.editor-header {
+	background-color: #1e1f23;
+}
+
+.editor-title {
+	font-size: 1.2rem;
+	letter-spacing: 0.2rem;
+	padding: 1rem;
+	display: inline-block;
+}
+
+.text-editor {
+	width: 100%;
+	height: calc(100% - 37px);
+	resize: none;
+	padding: 1.6rem 2.4rem;
+	font-size: 2rem;
+	background-color: #15161a;
+	border: none;
+	border-radius: 0;
+	color: white;
+}
+
+.text-editor:focus-visible {
+	outline: none;
+}
+
+/*
+ -- SPACING SYSTEM (px)
+2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
+
+-- FONT SIZE SYSTEM (px)
+10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
+ */

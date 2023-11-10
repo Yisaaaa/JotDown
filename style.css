@@ -1,0 +1,31 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html,
+body {
+	height: 100%;
+}
+
+html {
+	font-size: 62.5%;
+}
+
+body {
+	color: white;
+	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#root {
+	height: 100%;
+}
+
+.main {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	background-color: #404146;
+	column-gap: 0.22rem;
+	height: calc(100% - 55px);
+}

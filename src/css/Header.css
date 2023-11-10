@@ -1,0 +1,50 @@
+.header {
+	display: flex;
+	justify-content: space-between;
+	/* padding: 1.5rem 1rem; */
+	background-color: #2c2d31;
+}
+
+.header > div {
+	display: flex;
+	align-items: center;
+	gap: 2.4rem;
+}
+
+.hamburger {
+	background-color: #35383e;
+	border: none;
+	color: white;
+	padding: 1.5rem;
+	font-size: 2rem;
+}
+
+.logo {
+	font-size: 1.4rem;
+	font-weight: 600;
+	letter-spacing: 0.3rem;
+}
+
+.divider {
+	background-color: #35383e;
+	height: 70%;
+	width: 0.3rem;
+}
+
+.delete-note,
+.save-note {
+	background-color: #35383e;
+	border: none;
+	color: white;
+	padding: 0.8rem 1.6rem;
+	font-weight: 600;
+	border-radius: 4px;
+}
+
+/*
+ -- SPACING SYSTEM (px)
+2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
+
+-- FONT SIZE SYSTEM (px)
+10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
+ */
