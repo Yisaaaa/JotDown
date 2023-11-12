@@ -4,7 +4,8 @@ import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
 export default function Preview({ note }) {
-	const markdown = note.content;
+	let markdown = note.content;
+
 	return (
 		<div className="preview">
 			<header className="preview-header">

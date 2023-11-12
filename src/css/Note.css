@@ -1,0 +1,11 @@
+.note {
+	padding: 1.6rem 3.2rem;
+	cursor: pointer;
+}
+
+.note-name {
+	font-size: 1.6rem;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}

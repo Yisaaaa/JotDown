@@ -12,11 +12,14 @@
 }
 
 .hamburger {
+	display: flex;
+	align-items: center;
 	background-color: #35383e;
 	border: none;
 	color: white;
 	padding: 1.5rem;
 	font-size: 2rem;
+	cursor: pointer;
 }
 
 .logo {

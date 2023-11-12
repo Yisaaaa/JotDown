@@ -1,0 +1,43 @@
+.sidebar {
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: #2c2d31;
+	height: 100%;
+	width: 25rem;
+	z-index: 999;
+	transition: transform 0.4s ease-out;
+}
+
+.sidebar.hidden {
+	transform: translateX(-100%);
+}
+
+.hamburger-container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding-left: 1.6rem;
+	margin-bottom: 6.4rem;
+}
+
+.sidebar .hamburger {
+	background-color: inherit;
+}
+
+.notes {
+	overflow: scroll;
+	list-style: none;
+}
+
+.selected {
+	background-color: #3a3b40;
+}
+
+/*
+ -- SPACING SYSTEM (px)
+2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
+
+-- FONT SIZE SYSTEM (px)
+10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
+ */
