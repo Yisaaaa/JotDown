@@ -17,7 +17,7 @@ export default function App() {
 
 			oldNotes.forEach((note) => {
 				if (note.id === currentNoteID) {
-					newArray.unshift({ ...note, content: text });
+					newArray.unshift({ ...note, content: `${text}` });
 				} else {
 					newArray.push(note);
 				}

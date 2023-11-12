@@ -13,7 +13,7 @@ export default function Preview({ note }) {
 				</label>
 			</header>
 			<div className="preview-pane">
-				<Markdown remarkPlugins={[remarkGfm]}>{markdown}</Markdown>
+				<Markdown remarkPlugins={[remarkGfm]}>{`${markdown}`}</Markdown>
 			</div>
 		</div>
 	);
