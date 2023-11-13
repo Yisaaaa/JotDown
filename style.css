@@ -27,5 +27,9 @@ body {
 	grid-template-columns: repeat(2, 1fr);
 	background-color: #404146;
 	column-gap: 0.22rem;
-	height: calc(100% - 55px);
+	height: calc(100% - 51px);
+}
+
+.wrapper {
+	height: 100%;
 }

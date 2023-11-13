@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import Editor from "./Editor";
 import Preview from "./Preview";
@@ -13,6 +13,8 @@ export default function App() {
 	const currentNote = notes.find((note) => note.id === currentNoteID);
 
 	const [sidebarActive, setSidebarActive] = useState(false);
+
+	const sidebarEl = document.querySelector(".sidebar");
 
 	function updateNote(text) {
 		setNotes((oldNotes) => {
@@ -31,12 +33,17 @@ export default function App() {
 	}
 
 	function toggleSidebar() {
-		console.log(sidebarActive);
 		setSidebarActive((prev) => !prev);
 	}
 
+	function closeSideBarIfOpen(e) {
+		if (sidebarEl && !sidebarEl.contains(e.target) && sidebarActive) {
+			toggleSidebar();
+		}
+	}
+
 	return (
-		<>
+		<div className="wrapper" onClick={closeSideBarIfOpen}>
 			<Header toggleSidebar={toggleSidebar} currentNote={currentNote} />
 			<main className="main">
 				<Sidebar
@@ -49,6 +56,6 @@ export default function App() {
 				<Editor note={currentNote} handleChange={updateNote} />
 				<Preview note={currentNote} />
 			</main>
-		</>
+		</div>
 	);
 }
