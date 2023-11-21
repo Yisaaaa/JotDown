@@ -34,14 +34,29 @@
 	width: 0.3rem;
 }
 
-.delete-note,
-.save-note {
+.btn-header {
 	background-color: #35383e;
 	border: none;
 	color: white;
 	padding: 0.8rem 1.6rem;
 	font-weight: 600;
 	border-radius: 4px;
+	cursor: pointer;
+}
+
+.delete-note {
+	margin-right: 3.2rem;
+}
+
+.create-note {
+	display: flex;
+	align-items: center;
+	gap: 0.8rem;
+	line-height: 1;
+}
+
+.create-note span {
+	font-size: 1.8rem;
 }
 
 /*

@@ -11,6 +11,8 @@ export default function Note({ note }) {
 		name = JSON.parse(JSON.stringify(content).split("\n")[0]);
 	}
 
+	console.log(note);
+
 	return (
 		<div className="note">
 			<p className="note-name">{name}</p>
