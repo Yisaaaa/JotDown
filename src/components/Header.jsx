@@ -2,7 +2,7 @@ import React from "react";
 import "../css/Header.css";
 import MenuIcon from "@mui/icons-material/Menu";
 
-export default function Header({ toggleSidebar, addNote }) {
+export default function Header({ toggleSidebar, addNote, deleteNote }) {
 	return (
 		<header className="header">
 			<div className="left">
@@ -22,8 +22,15 @@ export default function Header({ toggleSidebar, addNote }) {
 				>
 					<span>+</span> Create Note
 				</button>
-				<button className="delete-note btn-header">Delete</button>
-				{/* <button className="save-note btn-header">Save changes</button> */}
+				<button
+					onClick={(e) => {
+						e.stopPropagation();
+						deleteNote();
+					}}
+					className="delete-note btn-header"
+				>
+					Delete
+				</button>
 			</div>
 		</header>
 	);

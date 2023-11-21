@@ -5,7 +5,7 @@ import Preview from "./Preview";
 import Sidebar from "./Sidebar";
 import data from "../data";
 import { notesCollection } from "../firebase";
-import { addDoc, onSnapshot } from "firebase/firestore";
+import { addDoc, deleteDoc, onSnapshot, doc } from "firebase/firestore";
 
 export default function App() {
 	const [notes, setNotes] = useState([]);
@@ -25,17 +25,30 @@ export default function App() {
 		return unsubscribe;
 	}, []);
 
-	useEffect(() => {
-		if (!notes) {
-			addNoteIntroduction();
-		}
-	}, []);
+	// useEffect(() => {
+	// 	if (!notes.length) {
+	// 		addNoteIntroduction();
+	// 	}
+	// }, []); BUG: Creates introduction note when page is refreshed.
 
 	useEffect(() => {
 		if (!currentNoteID) {
 			setCurrentId(notes[0]?.id);
+		} else {
+			if (!checkNoteExists(currentNoteID)) {
+				setCurrentId(notes[0]?.id);
+			}
 		}
 	}, [notes]);
+
+	function checkNoteExists(id) {
+		for (let note of notes) {
+			if (note.id === id) {
+				return true;
+			}
+			return false;
+		}
+	}
 
 	function updateNote(text) {
 		setNotes((oldNotes) => {
@@ -51,6 +64,10 @@ export default function App() {
 
 			return newArray;
 		});
+	}
+
+	async function deleteNote(id) {
+		await deleteDoc(doc(notesCollection, id));
 	}
 
 	async function addNote(text) {
@@ -84,7 +101,8 @@ export default function App() {
 			<Header
 				toggleSidebar={toggleSidebar}
 				currentNote={currentNote}
-				addNote={addNote}
+				addNote={addNewNote}
+				deleteNote={() => deleteNote(currentNoteID)}
 			/>
 			<main className="main">
 				<Sidebar
