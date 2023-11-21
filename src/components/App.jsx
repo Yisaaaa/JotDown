@@ -29,7 +29,7 @@ export default function App() {
 	// 	if (!notes.length) {
 	// 		addNoteIntroduction();
 	// 	}
-	// }, []); BUG: Creates introduction note when page is refreshed.
+	// }, []); BUG: Creates introduction note when page is
 
 	useEffect(() => {
 		if (!currentNoteID) {
@@ -67,7 +67,9 @@ export default function App() {
 	}
 
 	async function deleteNote(id) {
-		await deleteDoc(doc(notesCollection, id));
+		if (notes.length !== 0) {
+			await deleteDoc(doc(notesCollection, id));
+		}
 	}
 
 	async function addNote(text) {
