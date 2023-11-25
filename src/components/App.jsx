@@ -38,7 +38,9 @@ export default function App() {
 
 	useEffect(() => {
 		const timeoutID = setTimeout(() => {
-			updateNote(tempNoteText);
+			if (tempNoteText !== currentNote.content) {
+				updateNote(tempNoteText);
+			}
 		}, 1000);
 
 		return () => {
@@ -50,7 +52,7 @@ export default function App() {
 		if (currentNote) {
 			setTempNoteText(currentNote.content);
 		}
-	}, [currentNoteID]);
+	}, [currentNote]);
 
 	// useEffect(() => {
 	// 	if (!notes.length) {
