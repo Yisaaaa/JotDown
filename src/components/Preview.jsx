@@ -3,9 +3,7 @@ import "../css/Preview.css";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
-export default function Preview({ note }) {
-	let markdown = note.content;
-
+export default function Preview({ tempNoteText }) {
 	return (
 		<div className="preview">
 			<header className="preview-header">
@@ -14,7 +12,9 @@ export default function Preview({ note }) {
 				</label>
 			</header>
 			<div className="preview-pane">
-				<Markdown remarkPlugins={[remarkGfm]}>{`${markdown}`}</Markdown>
+				<Markdown
+					remarkPlugins={[remarkGfm]}
+				>{`${tempNoteText}`}</Markdown>
 			</div>
 		</div>
 	);

@@ -5,14 +5,25 @@ import Preview from "./Preview";
 import Sidebar from "./Sidebar";
 import data from "../data";
 import { notesCollection } from "../firebase";
-import { addDoc, deleteDoc, onSnapshot, doc } from "firebase/firestore";
+import {
+	addDoc,
+	deleteDoc,
+	updateDoc,
+	onSnapshot,
+	doc,
+} from "firebase/firestore";
 
 export default function App() {
 	const [notes, setNotes] = useState([]);
 	const [currentNoteID, setCurrentId] = useState("");
-	const currentNote = notes.find((note) => note.id === currentNoteID);
 	const [sidebarActive, setSidebarActive] = useState(false);
+	const [tempNoteText, setTempNoteText] = useState("");
+
+	const currentNote = notes.find((note) => note.id === currentNoteID);
 	const sidebarEl = document.querySelector(".sidebar");
+	const sortedNotes = notes.sort((a, b) => {
+		return b.updatedAt - a.updatedAt;
+	});
 
 	useEffect(() => {
 		const unsubscribe = onSnapshot(notesCollection, (snapshot) => {
@@ -24,6 +35,22 @@ export default function App() {
 
 		return unsubscribe;
 	}, []);
+
+	useEffect(() => {
+		const timeoutID = setTimeout(() => {
+			updateNote(tempNoteText);
+		}, 1000);
+
+		return () => {
+			clearTimeout(timeoutID);
+		};
+	}, [tempNoteText]);
+
+	useEffect(() => {
+		if (currentNote) {
+			setTempNoteText(currentNote.content);
+		}
+	}, [currentNoteID]);
 
 	// useEffect(() => {
 	// 	if (!notes.length) {
@@ -50,21 +77,31 @@ export default function App() {
 		}
 	}
 
-	function updateNote(text) {
-		setNotes((oldNotes) => {
-			const newArray = [];
-
-			oldNotes.forEach((note) => {
-				if (note.id === currentNoteID) {
-					newArray.unshift({ ...note, content: `${text}` });
-				} else {
-					newArray.push(note);
-				}
+	async function updateNote(text) {
+		if (currentNoteID) {
+			const docRef = doc(notesCollection, currentNoteID);
+			await updateDoc(docRef, {
+				content: text,
+				updatedAt: `${Date.now()}`,
 			});
-
-			return newArray;
-		});
+		}
 	}
+
+	// function updateNote(text) {
+	// 	setNotes((oldNotes) => {
+	// 		const newArray = [];
+
+	// 		oldNotes.forEach((note) => {
+	// 			if (note.id === currentNoteID) {
+	// 				newArray.unshift({ ...note, content: `${text}` });
+	// 			} else {
+	// 				newArray.push(note);
+	// 			}
+	// 		});
+
+	// 		return newArray;
+	// 	});
+	// }
 
 	async function deleteNote(id) {
 		if (notes.length !== 0) {
@@ -73,7 +110,14 @@ export default function App() {
 	}
 
 	async function addNote(text) {
-		const note = { title: "untitled", content: `${text}` };
+		const dateNow = Date.now();
+
+		const note = {
+			title: "untitled",
+			content: text,
+			createdAt: dateNow,
+			updatedAt: dateNow,
+		};
 		const docRef = await addDoc(notesCollection, note);
 		setCurrentId(docRef.id);
 	}
@@ -108,16 +152,28 @@ export default function App() {
 			/>
 			<main className="main">
 				<Sidebar
-					notes={notes}
+					// notes={notes}
+					notes={sortedNotes}
 					selected={currentNote}
 					sidebarActive={sidebarActive}
 					toggleSidebar={toggleSidebar}
 					setCurrentId={setCurrentId}
 				></Sidebar>
-				{currentNote && (
-					<Editor note={currentNote} handleChange={updateNote} />
+				{/* {currentNote && (
+					<Editor
+						note={tempNoteText}
+						setTempNoteText={setTempNoteText}
+					/>
 				)}
-				{currentNote && <Preview note={currentNote} />}
+				{currentNote && <Preview note={currentNote} />} */}
+				{currentNote && [
+					<Editor
+						key="editor"
+						tempNoteText={tempNoteText}
+						setTempNoteText={setTempNoteText}
+					/>,
+					<Preview key="preview" tempNoteText={tempNoteText} />,
+				]}
 			</main>
 		</div>
 	);

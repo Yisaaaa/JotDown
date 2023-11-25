@@ -1,6 +1,6 @@
 import "../css/Editor.css";
 
-export default function Editor({ note, handleChange }) {
+export default function Editor({ tempNoteText, setTempNoteText }) {
 	return (
 		<div className="editor">
 			<header className="editor-header">
@@ -12,8 +12,8 @@ export default function Editor({ note, handleChange }) {
 				className="text-editor"
 				name="text-editor"
 				id="text-editor"
-				value={note.content}
-				onChange={(e) => handleChange(e.target.value)}
+				value={tempNoteText}
+				onChange={(e) => setTempNoteText(e.target.value)}
 			></textarea>
 		</div>
 	);
