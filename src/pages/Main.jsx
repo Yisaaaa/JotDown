@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import Header from "./Header";
-import Editor from "./Editor";
-import Preview from "./Preview";
-import Sidebar from "./Sidebar";
+import Header from "../components/Header";
+import Editor from "../components/Editor";
+import Preview from "../components/Preview";
+import Sidebar from "../components/Sidebar";
 import data from "../data";
 import { notesCollection } from "../firebase";
 import {
@@ -13,7 +13,7 @@ import {
 	doc,
 } from "firebase/firestore";
 
-export default function App() {
+export default function Main() {
 	const [notes, setNotes] = useState([]);
 	const [currentNoteID, setCurrentId] = useState("");
 	const [sidebarActive, setSidebarActive] = useState(false);
@@ -88,22 +88,6 @@ export default function App() {
 			});
 		}
 	}
-
-	// function updateNote(text) {
-	// 	setNotes((oldNotes) => {
-	// 		const newArray = [];
-
-	// 		oldNotes.forEach((note) => {
-	// 			if (note.id === currentNoteID) {
-	// 				newArray.unshift({ ...note, content: `${text}` });
-	// 			} else {
-	// 				newArray.push(note);
-	// 			}
-	// 		});
-
-	// 		return newArray;
-	// 	});
-	// }
 
 	async function deleteNote(id) {
 		if (notes.length !== 0) {
