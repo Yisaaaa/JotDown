@@ -15,12 +15,14 @@ function Login() {
 								className="email"
 								name="email"
 								type="email"
+								id="email"
 							/>
 							<label htmlFor="passwd">Password</label>
 							<input
 								className="passwd"
 								name="passwd"
 								type="password"
+								id="passwd"
 							/>
 						</div>
 						<button className="login-submit">Login</button>
