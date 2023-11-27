@@ -3,25 +3,7 @@ import "../css/Sidebar.css";
 import MenuIcon from "@mui/icons-material/Menu";
 import Note from "./Note";
 
-export default function Sidebar({
-	notes,
-	sidebarActive,
-	toggleSidebar,
-	selected,
-	setCurrentId,
-}) {
-	const noteComponents = notes.map((note) => {
-		return (
-			<li
-				key={note.id}
-				className={selected === note ? "selected" : ""}
-				onClick={() => setCurrentId(note.id)}
-			>
-				<Note note={note}></Note>
-			</li>
-		);
-	});
-
+export default function Sidebar({ sidebarActive, toggleSidebar }) {
 	return (
 		<div className={`sidebar ${sidebarActive ? "" : "hidden"}`}>
 			<div className="hamburger-container">
@@ -30,7 +12,7 @@ export default function Sidebar({
 					<MenuIcon fontSize="large"></MenuIcon>
 				</button>
 			</div>
-			<ul className="notes">{noteComponents}</ul>
+			<ul className="notes">fdasf</ul>
 		</div>
 	);
 }

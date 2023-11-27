@@ -1,6 +1,8 @@
 import React from "react";
 import "../css/Header.css";
 import MenuIcon from "@mui/icons-material/Menu";
+import { signOut } from "firebase/auth";
+import { auth } from "../firebase";
 
 export default function Header({ toggleSidebar, addNote, deleteNote }) {
 	return (
@@ -31,6 +33,7 @@ export default function Header({ toggleSidebar, addNote, deleteNote }) {
 				>
 					Delete
 				</button>
+				<button onClick={() => signOut(auth)}>signOUt</button>
 			</div>
 		</header>
 	);
