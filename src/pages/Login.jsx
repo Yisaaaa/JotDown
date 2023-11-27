@@ -1,5 +1,5 @@
 import React from "react";
-import LoginImg from "../../public/img/hero.png";
+import LoginImg from "../assets/img/hero.png";
 import "../css/Login.css";
 import { auth } from "../firebase";
 import { signInWithEmailAndPassword, signOut } from "firebase/auth";

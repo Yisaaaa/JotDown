@@ -4,7 +4,7 @@
 
 .login-container {
 	display: grid;
-	grid-template-columns: 1fr 1fr;
+	grid-template-columns: 1fr 1.5fr;
 	height: calc(100% - 87px);
 	max-width: 150rem;
 	margin: 0 auto;
@@ -20,7 +20,7 @@
 }
 
 .login-left {
-	width: 70%;
+	width: 80%;
 	justify-self: end;
 }
 
