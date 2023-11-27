@@ -10,14 +10,20 @@ import { collection, onSnapshot } from "firebase/firestore";
 export default function Main({ user }) {
 	const notesCollectionPath = `usersCollection/${user.uid}/notesCollection`;
 
-	const [notes, setNotes] = useState("");
-	console.log(notes);
-
+	const [notes, setNotes] = useState([]);
 	useEffect(() => {
 		const unsubscribe = onSnapshot(
 			collection(db, notesCollectionPath),
 			(snapshot) => {
-				console.log(snapshot.docs.map((doc) => doc.data()));
+				const notesArray = [];
+				snapshot.docs.forEach((doc) => {
+					const note = {
+						id: doc.id,
+						...doc.data(),
+					};
+					notesArray.push(note);
+				});
+				setNotes(notesArray);
 			}
 		);
 
@@ -26,6 +32,13 @@ export default function Main({ user }) {
 
 	const [sidebarActive, setSidebarActive] = useState(false);
 	const sidebarEl = document.querySelector(".sidebar");
+
+	const [selectedNote, setSelectedNote] = useState("");
+	useEffect(() => {
+		if (notes.length !== 0) {
+			setSelectedNote(notes[0].id);
+		}
+	}, [notes]);
 
 	function toggleSidebar() {
 		setSidebarActive((prev) => !prev);
@@ -42,7 +55,9 @@ export default function Main({ user }) {
 			<Header toggleSidebar={toggleSidebar} />
 			<main className="main">
 				<Sidebar
-					// notes={notes}
+					notes={notes}
+					selectedNote={selectedNote}
+					setSelectedNote={setSelectedNote}
 					sidebarActive={sidebarActive}
 					toggleSidebar={toggleSidebar}
 				></Sidebar>
