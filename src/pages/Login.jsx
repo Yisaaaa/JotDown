@@ -47,7 +47,7 @@ function Login() {
 									radius="9"
 									color="#fff"
 									ariaLabel="three-dots-loading"
-									wrapperClass="loader"
+									wrapperClass="loader-login-btn"
 									visible={true}
 								/>
 							) : (
