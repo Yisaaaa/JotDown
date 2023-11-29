@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import LoginImg from "../assets/img/hero.png";
 import "../css/Login.css";
 import { auth } from "../firebase";
 import { signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { ThreeDots } from "react-loader-spinner";
 
 function Login() {
+	const [loader, setLoader] = useState(false);
+	const [a, setA] = useState(0);
+
 	async function handleSubmit(e) {
 		e.preventDefault();
+		setLoader(true);
 		const email = e.target[0].value;
 		const pass = e.target[1].value;
 		const res = await signInWithEmailAndPassword(auth, email, pass);
@@ -35,7 +40,19 @@ function Login() {
 							/>
 						</div>
 						<button type="submit" className="login-submit">
-							Login
+							{loader ? (
+								<ThreeDots
+									height="20"
+									width="40"
+									radius="9"
+									color="#fff"
+									ariaLabel="three-dots-loading"
+									wrapperClass="loader"
+									visible={true}
+								/>
+							) : (
+								"Login"
+							)}
 						</button>
 					</form>
 				</div>
