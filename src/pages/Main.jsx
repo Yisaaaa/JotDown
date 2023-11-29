@@ -36,9 +36,16 @@ export default function Main({ user }) {
 	const [selectedNote, setSelectedNote] = useState("");
 	useEffect(() => {
 		if (notes.length !== 0) {
-			setSelectedNote(notes[0].id);
+			setSelectedNote(notes[0]);
 		}
 	}, [notes]);
+
+	const [tempNoteText, setTempNoteText] = useState("");
+	useEffect(() => {
+		if (selectedNote) {
+			setTempNoteText(selectedNote.content);
+		}
+	}, [selectedNote]);
 
 	function toggleSidebar() {
 		setSidebarActive((prev) => !prev);
@@ -48,6 +55,10 @@ export default function Main({ user }) {
 		if (sidebarEl && !sidebarEl.contains(e.target) && sidebarActive) {
 			toggleSidebar();
 		}
+	}
+
+	function findSelectedNote() {
+		notes.find();
 	}
 
 	return (
@@ -61,15 +72,13 @@ export default function Main({ user }) {
 					sidebarActive={sidebarActive}
 					toggleSidebar={toggleSidebar}
 				></Sidebar>
-				{/* {currentNote && (
-					<Editor
-						note={tempNoteText}
-						setTempNoteText={setTempNoteText}
-					/>
-				)}
-				{currentNote && <Preview note={currentNote} />} */}
-				<Editor key="editor" />
-				<Preview key="preview" />
+
+				<Editor
+					key="editor"
+					tempNoteText={tempNoteText}
+					setTempNoteText={setTempNoteText}
+				/>
+				<Preview key="preview" tempNoteText={tempNoteText} />
 			</main>
 		</div>
 	);

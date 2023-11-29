@@ -14,8 +14,8 @@ export default function Sidebar({
 		return (
 			<li
 				key={note.id}
-				className={selectedNote === note.id ? "selected" : ""}
-				onClick={() => setSelectedNote(note.id)}
+				className={selectedNote.id === note.id ? "selected" : ""}
+				onClick={() => setSelectedNote(note)}
 			>
 				<Note note={note}></Note>
 			</li>
