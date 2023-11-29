@@ -4,7 +4,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase";
 
-export default function Header({ toggleSidebar, addNote, deleteNote }) {
+export default function Header({ toggleSidebar, createNote, deleteNote }) {
 	return (
 		<header className="header">
 			<div className="left">
@@ -18,7 +18,7 @@ export default function Header({ toggleSidebar, addNote, deleteNote }) {
 				<button
 					onClick={(e) => {
 						e.stopPropagation();
-						addNote();
+						createNote();
 					}}
 					className="create-note btn-header"
 				>

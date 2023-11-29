@@ -5,7 +5,15 @@ import Preview from "../components/Preview";
 import Sidebar from "../components/Sidebar";
 import data from "../data";
 import { db } from "../firebase";
-import { collection, onSnapshot } from "firebase/firestore";
+import {
+	doc,
+	addDoc,
+	deleteDoc,
+	collection,
+	onSnapshot,
+	setDoc,
+	getDoc,
+} from "firebase/firestore";
 
 export default function Main({ user }) {
 	const notesCollectionPath = `usersCollection/${user.uid}/notesCollection`;
@@ -30,13 +38,15 @@ export default function Main({ user }) {
 		return unsubscribe;
 	}, []);
 
+	const sortedNotes = notes.sort((a, b) => b.updatedAt - a.updatedAt);
+
 	const [sidebarActive, setSidebarActive] = useState(false);
 	const sidebarEl = document.querySelector(".sidebar");
 
 	const [selectedNote, setSelectedNote] = useState("");
 	useEffect(() => {
-		if (notes.length !== 0) {
-			setSelectedNote(notes[0]);
+		if (sortedNotes.length !== 0) {
+			setSelectedNote(sortedNotes[0]);
 		}
 	}, [notes]);
 
@@ -57,13 +67,28 @@ export default function Main({ user }) {
 		}
 	}
 
-	function findSelectedNote() {
-		notes.find();
+	async function createNote() {
+		const dateNow = Date.now();
+		setSelectedNote("");
+
+		const docRef = await addDoc(collection(db, notesCollectionPath), {
+			content: `note ${notes.length}`,
+			createdAt: dateNow,
+			updatedAt: dateNow,
+		});
+	}
+
+	async function deleteNote() {
+		await deleteDoc(doc(db, notesCollectionPath, selectedNote.id));
 	}
 
 	return (
 		<div className="wrapper" onClick={closeSideBarIfOpen}>
-			<Header toggleSidebar={toggleSidebar} />
+			<Header
+				toggleSidebar={toggleSidebar}
+				createNote={createNote}
+				deleteNote={deleteNote}
+			/>
 			<main className="main">
 				<Sidebar
 					notes={notes}
