@@ -54,8 +54,22 @@ export default function Main({ user }) {
 	useEffect(() => {
 		if (selectedNote) {
 			setTempNoteText(selectedNote.content);
+		} else {
+			setTempNoteText("");
 		}
 	}, [selectedNote]);
+
+	useEffect(() => {
+		const timeoutId = setTimeout(() => {
+			if (selectedNote.content !== tempNoteText) {
+				updateNote(tempNoteText);
+			}
+		}, 1000);
+
+		return () => {
+			clearTimeout(timeoutId);
+		};
+	}, [tempNoteText]);
 
 	function toggleSidebar() {
 		setSidebarActive((prev) => !prev);
@@ -71,7 +85,7 @@ export default function Main({ user }) {
 		const dateNow = Date.now();
 		setSelectedNote("");
 
-		const docRef = await addDoc(collection(db, notesCollectionPath), {
+		await addDoc(collection(db, notesCollectionPath), {
 			content: `note ${notes.length}`,
 			createdAt: dateNow,
 			updatedAt: dateNow,
@@ -79,7 +93,23 @@ export default function Main({ user }) {
 	}
 
 	async function deleteNote() {
-		await deleteDoc(doc(db, notesCollectionPath, selectedNote.id));
+		if (selectedNote) {
+			setSelectedNote("");
+			await deleteDoc(doc(db, notesCollectionPath, selectedNote.id));
+		}
+	}
+
+	async function updateNote(text) {
+		if (selectedNote) {
+			await setDoc(
+				doc(db, notesCollectionPath, selectedNote.id),
+				{
+					content: text,
+					updatedAt: Date.now(),
+				},
+				{ merge: true }
+			);
+		}
 	}
 
 	return (
