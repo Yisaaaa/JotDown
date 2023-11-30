@@ -9,6 +9,7 @@ export default function Sidebar({
 	notes,
 	selectedNote,
 	setSelectedNote,
+	notesCollectionPath,
 }) {
 	const noteComponents = notes.map((note) => {
 		return (
@@ -17,7 +18,10 @@ export default function Sidebar({
 				className={selectedNote.id === note.id ? "selected" : ""}
 				onClick={() => setSelectedNote(note)}
 			>
-				<Note note={note}></Note>
+				<Note
+					notesCollectionPath={notesCollectionPath}
+					note={note}
+				></Note>
 			</li>
 		);
 	});

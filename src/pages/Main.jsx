@@ -23,6 +23,7 @@ export default function Main({ user }) {
 		const unsubscribe = onSnapshot(
 			collection(db, notesCollectionPath),
 			(snapshot) => {
+				console.log("notes has changed");
 				const notesArray = [];
 				snapshot.docs.forEach((doc) => {
 					const note = {
@@ -86,6 +87,7 @@ export default function Main({ user }) {
 		setSelectedNote("");
 
 		await addDoc(collection(db, notesCollectionPath), {
+			title: "untitled",
 			content: `note ${notes.length}`,
 			createdAt: dateNow,
 			updatedAt: dateNow,
@@ -126,6 +128,7 @@ export default function Main({ user }) {
 					setSelectedNote={setSelectedNote}
 					sidebarActive={sidebarActive}
 					toggleSidebar={toggleSidebar}
+					notesCollectionPath={notesCollectionPath}
 				></Sidebar>
 
 				<Editor
