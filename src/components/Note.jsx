@@ -22,7 +22,6 @@ export default function Note({ note, notesCollectionPath }) {
 
 	async function updateTitle(title) {
 		const docRef = doc(db, notesCollectionPath, note.id);
-
 		title = title ? title : "untitled";
 
 		await setDoc(
