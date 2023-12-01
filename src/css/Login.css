@@ -7,7 +7,7 @@
 .login-container {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
-	height: calc(100% - 87px);
+	/* height: calc(100% - 87px); */
 	max-width: 170rem;
 	margin: 0 auto;
 	column-gap: 10rem;
@@ -36,6 +36,7 @@
 	padding: 3rem 5.6rem;
 	font-size: 4rem;
 	letter-spacing: 0.8px;
+	margin-bottom: 9.6rem;
 }
 
 .login-form {
@@ -78,16 +79,41 @@
 	outline: none;
 } */
 
-.login-submit {
+.login-btn {
+	font-family: inherit;
 	border: none;
 	width: 100%;
-	background-color: #000;
-	color: white;
 	font-size: 1.6rem;
 	font-weight: 700;
 	padding: 1.2rem 0;
-	border-radius: 5px;
+	border-radius: 50px;
 	cursor: pointer;
+}
+
+.login-submit {
+	background-color: #0f172a;
+	color: white;
+}
+
+.or {
+	font-size: 1.6rem;
+	color: #999;
+	text-align: center;
+	margin: 1.6rem 0;
+}
+
+.google-login {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.8rem;
+	background-color: transparent;
+	border: 2px solid #ddd;
+	color: #555;
+}
+
+.google-logo {
+	height: 2rem;
 }
 
 .login-img {
@@ -101,6 +127,29 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+}
+
+.signup-container {
+	display: flex;
+	gap: 1.8rem;
+	align-items: center;
+	grid-column: 1 / -1;
+	justify-content: center;
+}
+
+.signup-text {
+	font-size: 1.6rem;
+	font-weight: 500;
+	letter-spacing: 1.05px;
+	color: #999;
+}
+
+.signup-btn {
+	width: max-content;
+	padding: 0.8rem 1.6rem;
+	border: 1px solid #333;
+	background: none;
+	color: #555;
 }
 
 .welcome-text {
