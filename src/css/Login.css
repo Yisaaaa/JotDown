@@ -1,14 +1,16 @@
 .login-page {
+	font-family: "Montserrat";
+
 	height: 100%;
 }
 
 .login-container {
 	display: grid;
-	grid-template-columns: 1fr 1.5fr;
+	grid-template-columns: 1fr 1fr;
 	height: calc(100% - 87px);
-	max-width: 150rem;
+	max-width: 170rem;
 	margin: 0 auto;
-	column-gap: 9.6rem;
+	column-gap: 10rem;
 	align-items: center;
 
 	color: #333;
@@ -20,8 +22,8 @@
 }
 
 .login-left {
-	width: 80%;
-	justify-self: end;
+	width: 65%;
+	justify-self: center;
 }
 
 .login-right {
@@ -29,10 +31,10 @@
 }
 
 .logo-login {
+	font-weight: 800;
 	color: #333;
 	padding: 3rem 5.6rem;
-	font-size: 2rem;
-	font-weight: 700;
+	font-size: 4rem;
 	letter-spacing: 0.8px;
 }
 
@@ -47,7 +49,7 @@
 	font-weight: 600;
 }
 
-.inputs {
+/* .inputs {
 	display: flex;
 	flex-direction: column;
 	margin-bottom: 3rem;
@@ -55,16 +57,16 @@
 
 .email {
 	margin-bottom: 3.2rem;
-}
+} */
 
-.inputs > label {
+/* .inputs > label {
 	font-weight: 500;
 	font-size: 1.6rem;
 	margin-bottom: 1rem;
 	cursor: pointer;
-}
+} */
 
-.inputs > input {
+/* .inputs > input {
 	font-size: 1.8rem;
 	padding: 0.8rem 0;
 	border: none;
@@ -74,7 +76,7 @@
 
 .inputs > input:focus {
 	outline: none;
-}
+} */
 
 .login-submit {
 	border: none;
@@ -99,6 +101,49 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+}
+
+.welcome-text {
+	font-weight: 600;
+	font-size: 3rem;
+	text-align: center;
+	margin-bottom: 4.8rem;
+}
+
+.input-container {
+	margin-bottom: 2.4rem;
+}
+
+.input-container {
+	display: flex;
+	flex-direction: column;
+	border-radius: 9px;
+	border: 2px solid #ddd;
+	overflow: hidden;
+	padding: 1.2rem 1.8rem;
+}
+
+.input-container > label {
+	font-size: 1.4rem;
+	color: #777;
+	margin-bottom: 0.8rem;
+}
+
+.input-container > input {
+	border: none;
+	padding-left: 0.2rem;
+	font-size: 1.8rem;
+}
+
+.input-container > input:focus-within {
+	outline: none;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+	background: none;
 }
 
 /*

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../css/Note.css";
 import Rename from "@mui/icons-material/DriveFileRenameOutline";
-import { getDoc, setDoc, doc } from "firebase/firestore";
+import { setDoc, doc } from "firebase/firestore";
 import { db } from "../firebase";
 
 export default function Note({ note, notesCollectionPath }) {
@@ -16,7 +16,8 @@ export default function Note({ note, notesCollectionPath }) {
 	// 	name = JSON.parse(JSON.stringify(content).split("\n")[0]);
 	// }
 
-	function showNoteMenu() {
+	function showNoteMenu(e) {
+		e.stopPropagation();
 		setInInputState((prevState) => !prevState);
 	}
 
@@ -44,6 +45,7 @@ export default function Note({ note, notesCollectionPath }) {
 	}
 
 	function handleCancel(e) {
+		e.stopPropagation();
 		e.preventDefault();
 		setInInputState(false);
 	}

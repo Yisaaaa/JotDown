@@ -88,8 +88,8 @@ export default function Main({ user }) {
 
 		await addDoc(collection(db, notesCollectionPath), {
 			title: "untitled",
-			content: `# Welcome to MarkItDown!
-## Start writing here...`,
+			content: `# Welcome to JotDown!
+## Start jotting here...`,
 			createdAt: dateNow,
 			updatedAt: dateNow,
 		});

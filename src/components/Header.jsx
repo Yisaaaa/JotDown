@@ -11,7 +11,7 @@ export default function Header({ toggleSidebar, createNote, deleteNote }) {
 				<button onClick={toggleSidebar} className="hamburger">
 					<MenuIcon fontSize="large"></MenuIcon>
 				</button>
-				<span className="logo">MARKDOWN</span>
+				<span className="logo">JotDown</span>
 				<div className="divider"></div>
 			</div>
 			<div className="right">

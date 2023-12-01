@@ -29,7 +29,7 @@ export default function Sidebar({
 	return (
 		<div className={`sidebar ${sidebarActive ? "" : "hidden"}`}>
 			<div className="hamburger-container">
-				<span className="logo">MARKDOWN</span>
+				<span className="logo">JotDown</span>
 				<button className="hamburger" onClick={(e) => toggleSidebar()}>
 					<MenuIcon fontSize="large"></MenuIcon>
 				</button>

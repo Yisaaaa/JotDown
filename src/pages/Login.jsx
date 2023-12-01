@@ -19,25 +19,32 @@ function Login() {
 
 	return (
 		<main className="login-page">
-			<header className="logo-login">Markdown</header>
+			<header className="logo-login">JotDown</header>
 			<div className="login-container">
 				<div className="login-left">
 					<form onSubmit={handleSubmit} className="login-form">
+						<p className="welcome-text">
+							Welcome back to JotDown 👋
+						</p>
 						<div className="inputs">
-							<label htmlFor="email">Email</label>
-							<input
-								className="email"
-								name="email"
-								type="email"
-								id="email"
-							/>
-							<label htmlFor="passwd">Password</label>
-							<input
-								className="passwd"
-								name="passwd"
-								type="password"
-								id="passwd"
-							/>
+							<div className="input-container">
+								<label htmlFor="email">Email address</label>
+								<input
+									className="email"
+									name="email"
+									type="email"
+									id="email"
+								/>
+							</div>
+							<div className="input-container">
+								<label htmlFor="passwd">Password</label>
+								<input
+									className="passwd"
+									name="passwd"
+									type="password"
+									id="passwd"
+								/>
+							</div>
 						</div>
 						<button type="submit" className="login-submit">
 							{loader ? (
