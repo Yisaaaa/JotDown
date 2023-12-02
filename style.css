@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;0,700;0,800;0,900;1,400&display=swap");
 
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600;700&display=swap");
+
 * {
 	margin: 0;
 	padding: 0;
@@ -26,10 +28,13 @@ body {
 
 .main {
 	display: grid;
-	grid-template-columns: repeat(2, 1fr);
+	grid-template-columns: repeat(2, 50%);
 	background-color: #404146;
-	column-gap: 0.22rem;
-	height: calc(100% - 51px);
+	/* column-gap: 0.4rem; */
+	height: calc(100% - 51.8833px);
+	/* overflow: hidden; */
+	width: calc(100% - 0.4rem);
+	column-gap: 0.4rem;
 }
 
 .wrapper {
@@ -42,4 +47,17 @@ body {
 	width: 100%;
 	align-items: center;
 	justify-content: center;
+}
+
+::-webkit-scrollbar {
+	width: 2px;
+}
+::-webkit-scrollbar-track {
+	background: #15161a;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: #888;
+	border-radius: 10px;
 }
