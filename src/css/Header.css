@@ -35,6 +35,12 @@
 	width: 0.3rem;
 }
 
+.note-title {
+	font-size: 1.4rem;
+	letter-spacing: 1.4px;
+	font-weight: 500;
+}
+
 .btn-header {
 	background-color: #35383e;
 	border: none;

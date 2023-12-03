@@ -119,6 +119,7 @@ export default function Main({ user }) {
 	return (
 		<div className="wrapper" onClick={closeSideBarIfOpen}>
 			<Header
+				selectedNote={selectedNote}
 				toggleSidebar={toggleSidebar}
 				createNote={createNote}
 				deleteNote={deleteNote}
