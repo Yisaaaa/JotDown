@@ -4,19 +4,34 @@ import "../css/Login.css";
 import { auth } from "../firebase";
 import { signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { ThreeDots } from "react-loader-spinner";
-import GoogleIcon from "@mui/icons-material/Google";
+import WarningIcon from "@mui/icons-material/Warning";
+import { red } from "@mui/material/colors";
 
 function Login() {
+	const ERRORS = {
+		"auth/invalid-email": "Please enter your email",
+		"auth/missing-password": "Please enter your password",
+		"auth/invalid-login-credentials": "Email or password is incorrect",
+	};
 	const [loader, setLoader] = useState(false);
-	const [a, setA] = useState(0);
+	const [error, setError] = useState("");
 
 	async function handleSubmit(e) {
 		e.preventDefault();
 		setLoader(true);
 		const email = e.target[0].value;
 		const pass = e.target[1].value;
-		const res = await signInWithEmailAndPassword(auth, email, pass);
+		try {
+			const res = await signInWithEmailAndPassword(auth, email, pass);
+			setError("");
+		} catch (error) {
+			setError(ERRORS[error.code]);
+		} finally {
+			setLoader(false);
+		}
 	}
+
+	console.log(error);
 
 	return (
 		<main className="login-page">
@@ -27,6 +42,15 @@ function Login() {
 						<p className="welcome-text">
 							Welcome back to JotDown 👋
 						</p>
+
+						{error && (
+							<div className="error-container">
+								<WarningIcon
+									sx={{ fontSize: 24, color: red[600] }}
+								/>
+								<p className="error-msg">{error}</p>
+							</div>
+						)}
 						<div className="inputs">
 							<div className="input-container">
 								<label htmlFor="email">Email address</label>
@@ -37,6 +61,7 @@ function Login() {
 									id="email"
 								/>
 							</div>
+
 							<div className="input-container">
 								<label htmlFor="passwd">Password</label>
 								<input
