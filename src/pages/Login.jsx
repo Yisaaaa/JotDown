@@ -25,13 +25,12 @@ function Login() {
 			const res = await signInWithEmailAndPassword(auth, email, pass);
 			setError("");
 		} catch (error) {
+			console.log(error.code);
 			setError(ERRORS[error.code]);
 		} finally {
 			setLoader(false);
 		}
 	}
-
-	console.log(error);
 
 	return (
 		<main className="login-page">
