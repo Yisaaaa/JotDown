@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Main from "./pages/Main";
-import Login from "./pages/Login";
+import AuthPage from "./pages/AuthPage";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase";
 import { TailSpin } from "react-loader-spinner";
@@ -34,7 +34,7 @@ function App() {
 		);
 	}
 
-	return <>{user ? <Main user={user} /> : <Login />}</>;
+	return <>{user ? <Main user={user} /> : <AuthPage />}</>;
 }
 
 export default App;

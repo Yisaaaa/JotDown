@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import LoginImg from "../assets/img/hero.png";
-import "../css/Login.css";
+import "../css/AuthPage.css";
 import { auth } from "../firebase";
 import { signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { ThreeDots } from "react-loader-spinner";
@@ -15,6 +15,7 @@ function Login() {
 	};
 	const [loader, setLoader] = useState(false);
 	const [error, setError] = useState("");
+	const [isLogin, setIsLogin] = useState(true);
 
 	async function handleSubmit(e) {
 		e.preventDefault();
@@ -37,12 +38,23 @@ function Login() {
 			<header className="logo-login">JotDown</header>
 			<div className="login-container">
 				<div className="login-left">
-					<form onSubmit={handleSubmit} className="login-form">
-						<p className="welcome-text">
-							Welcome back to JotDown 👋
+					<form
+						onSubmit={
+							isLogin
+								? handleSubmit
+								: () => {
+										console.log("create acc");
+								  }
+						}
+						className="login-form"
+					>
+						<p className=" welcome-text">
+							{isLogin
+								? "Welcome back to JotDown 👋"
+								: "Create account"}
 						</p>
 
-						{error && (
+						{isLogin && error && (
 							<div className="error-container">
 								<WarningIcon
 									sx={{ fontSize: 24, color: red[600] }}
@@ -85,8 +97,10 @@ function Login() {
 									wrapperClass="loader-login-btn"
 									visible={true}
 								/>
-							) : (
+							) : isLogin ? (
 								"Log in"
+							) : (
+								"Sign up"
 							)}
 						</button>
 						<p className="or">or</p>
@@ -123,11 +137,15 @@ function Login() {
 				<div className="login-right">
 					<img className="login-img" src={LoginImg} />
 				</div>
-				<div className="signup-container">
-					<p className="signup-text">
-						New to JotDown? Start jotting down now
+				<div className="auth-alt-container">
+					<p className="auth-alt-text">
+						{isLogin
+							? "New to JotDown? Start jotting down now"
+							: "Already have an account?"}
 					</p>
-					<button className="signup-btn login-btn">Sign up</button>
+					<button className="auth-alt-btn login-btn">
+						{isLogin ? "Sign up" : "Log in"}
+					</button>
 				</div>
 			</div>
 		</main>

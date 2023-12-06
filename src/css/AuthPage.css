@@ -127,7 +127,7 @@
 	justify-content: center;
 }
 
-.signup-container {
+.auth-alt-container {
 	display: flex;
 	gap: 1.8rem;
 	align-items: center;
@@ -135,14 +135,14 @@
 	justify-content: center;
 }
 
-.signup-text {
+.auth-alt-text {
 	font-size: 1.6rem;
 	font-weight: 500;
 	letter-spacing: 1.05px;
 	color: #999;
 }
 
-.signup-btn {
+.auth-alt-btn {
 	width: max-content;
 	padding: 0.8rem 1.6rem;
 	border: 1px solid #333;
