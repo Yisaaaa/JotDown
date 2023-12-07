@@ -5,12 +5,13 @@ import { auth } from "../firebase";
 import {
 	signInWithEmailAndPassword,
 	createUserWithEmailAndPassword,
+	signInWithPopup,
+	GoogleAuthProvider,
 } from "firebase/auth";
 import { ThreeDots } from "react-loader-spinner";
 import WarningIcon from "@mui/icons-material/Warning";
 import { red } from "@mui/material/colors";
-import { Navigate, redirect, useNavigate } from "react-router-dom";
-import { Password } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
 
 function Login({ isLogin }) {
 	const ERRORS = {
@@ -22,6 +23,7 @@ function Login({ isLogin }) {
 	const [error, setError] = useState("");
 
 	const navigate = useNavigate();
+	const googleProvider = new GoogleAuthProvider();
 
 	async function handleSubmit(e) {
 		e.preventDefault();
@@ -43,6 +45,12 @@ function Login({ isLogin }) {
 		} finally {
 			setLoader(false);
 		}
+	}
+
+	async function googleSignIn(e) {
+		e.preventDefault();
+		await signInWithPopup(auth, googleProvider);
+		navigate("/");
 	}
 
 	function handleAuthAltBtn() {
@@ -116,8 +124,8 @@ function Login({ isLogin }) {
 						</button>
 						<p className="or">or</p>
 						<button
-							type="submit"
 							className="login-btn google-login"
+							onClick={googleSignIn}
 						>
 							<svg
 								className="google-logo"
