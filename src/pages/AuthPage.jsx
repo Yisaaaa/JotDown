@@ -6,8 +6,9 @@ import { signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { ThreeDots } from "react-loader-spinner";
 import WarningIcon from "@mui/icons-material/Warning";
 import { red } from "@mui/material/colors";
+import { Navigate, redirect, useNavigate } from "react-router-dom";
 
-function Login() {
+function Login({ isLogin }) {
 	const ERRORS = {
 		"auth/invalid-email": "Please enter your email",
 		"auth/missing-password": "Please enter your password",
@@ -15,7 +16,8 @@ function Login() {
 	};
 	const [loader, setLoader] = useState(false);
 	const [error, setError] = useState("");
-	const [isLogin, setIsLogin] = useState(true);
+
+	const navigate = useNavigate();
 
 	async function handleSubmit(e) {
 		e.preventDefault();
@@ -25,11 +27,20 @@ function Login() {
 		try {
 			const res = await signInWithEmailAndPassword(auth, email, pass);
 			setError("");
+			navigate("/");
 		} catch (error) {
 			console.log(error.code);
 			setError(ERRORS[error.code]);
 		} finally {
 			setLoader(false);
+		}
+	}
+
+	function handleAuthAltBtn() {
+		if (isLogin) {
+			navigate("/create-account");
+		} else {
+			navigate("/login");
 		}
 	}
 
@@ -143,7 +154,13 @@ function Login() {
 							? "New to JotDown? Start jotting down now"
 							: "Already have an account?"}
 					</p>
-					<button className="auth-alt-btn login-btn">
+					<button
+						// TODO: this wont change the state isLogin--there is no such
+						// state anymore. Instead, it will be a Link to "/login"
+						// or "/create-account" depending on the value of isLogin prop.
+						onClick={handleAuthAltBtn}
+						className="auth-alt-btn login-btn"
+					>
 						{isLogin ? "Sign up" : "Log in"}
 					</button>
 				</div>
