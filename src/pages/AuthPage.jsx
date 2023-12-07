@@ -2,11 +2,15 @@ import React, { useState } from "react";
 import LoginImg from "../assets/img/hero.png";
 import "../css/AuthPage.css";
 import { auth } from "../firebase";
-import { signInWithEmailAndPassword, signOut } from "firebase/auth";
+import {
+	signInWithEmailAndPassword,
+	createUserWithEmailAndPassword,
+} from "firebase/auth";
 import { ThreeDots } from "react-loader-spinner";
 import WarningIcon from "@mui/icons-material/Warning";
 import { red } from "@mui/material/colors";
 import { Navigate, redirect, useNavigate } from "react-router-dom";
+import { Password } from "@mui/icons-material";
 
 function Login({ isLogin }) {
 	const ERRORS = {
@@ -25,7 +29,12 @@ function Login({ isLogin }) {
 		const email = e.target[0].value;
 		const pass = e.target[1].value;
 		try {
-			const res = await signInWithEmailAndPassword(auth, email, pass);
+			if (isLogin) {
+				await signInWithEmailAndPassword(auth, email, pass);
+			} else {
+				console.log("creating account");
+				await createUserWithEmailAndPassword(auth, email, pass);
+			}
 			setError("");
 			navigate("/");
 		} catch (error) {
@@ -49,16 +58,7 @@ function Login({ isLogin }) {
 			<header className="logo-login">JotDown</header>
 			<div className="login-container">
 				<div className="login-left">
-					<form
-						onSubmit={
-							isLogin
-								? handleSubmit
-								: () => {
-										console.log("create acc");
-								  }
-						}
-						className="login-form"
-					>
+					<form onSubmit={handleSubmit} className="login-form">
 						<p className=" welcome-text">
 							{isLogin
 								? "Welcome back to JotDown 👋"
