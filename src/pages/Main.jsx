@@ -38,6 +38,7 @@ export default function Main({ user }) {
 	}, []);
 
 	const [isPreviewShown, setIsPreviewShown] = useState(true);
+	const [isInViewMode, setIsInViewMode] = useState(false);
 
 	const sortedNotes = notes.sort((a, b) => b.updatedAt - a.updatedAt);
 
@@ -116,6 +117,11 @@ export default function Main({ user }) {
 		}
 	}
 
+	function toggleIsInViewMode() {
+		setIsInViewMode((prevIsInViewMode) => !prevIsInViewMode);
+	}
+
+	console.log(isPreviewShown);
 	return (
 		<div className="wrapper" onClick={closeSideBarIfOpen}>
 			<Header
@@ -134,14 +140,23 @@ export default function Main({ user }) {
 					notesCollectionPath={notesCollectionPath}
 				></Sidebar>
 
-				<Editor
-					key="editor"
-					tempNoteText={tempNoteText}
-					setIsPreviewShown={setIsPreviewShown}
-					setTempNoteText={setTempNoteText}
-				/>
-				{isPreviewShown && (
-					<Preview key="preview" tempNoteText={tempNoteText} />
+				{!isInViewMode && (
+					<Editor
+						key="editor"
+						tempNoteText={tempNoteText}
+						setIsPreviewShown={setIsPreviewShown}
+						toggleIsInViewMode={toggleIsInViewMode}
+						setTempNoteText={setTempNoteText}
+					/>
+				)}
+
+				{(isPreviewShown || isInViewMode) && (
+					<Preview
+						key="preview"
+						isInViewMode={isInViewMode}
+						toggleIsInViewMode={toggleIsInViewMode}
+						tempNoteText={tempNoteText}
+					/>
 				)}
 			</main>
 		</div>

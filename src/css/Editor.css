@@ -10,11 +10,13 @@
 	background-color: #1e1f23;
 }
 
-.editor-header-icons {
+.preview-tools-icons {
+	display: flex;
+	column-gap: 0.8rem;
 	padding-right: 1.6rem;
 }
 
-.editor-header-icons > * {
+.preview-tools-icons > * {
 	cursor: pointer;
 	color: #ccc;
 }
@@ -32,7 +34,7 @@
 	height: calc(100% - 37px);
 	resize: none;
 	background-color: inherit;
-	padding: 1.6rem max(calc((100% - 99rem) / 2), 2.4rem);
+	padding: 1.6rem max(calc((100% - 99rem) / 2), 2.4rem) 30rem;
 	font-size: 2rem;
 	border: none;
 	border-radius: 0;
