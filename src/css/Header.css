@@ -51,10 +51,6 @@
 	cursor: pointer;
 }
 
-.delete-note {
-	margin-right: 3.2rem;
-}
-
 .create-note {
 	display: flex;
 	align-items: center;
@@ -64,6 +60,10 @@
 
 .create-note span {
 	font-size: 1.8rem;
+}
+
+.sign-out-btn {
+	margin-right: 2.4rem;
 }
 
 /*

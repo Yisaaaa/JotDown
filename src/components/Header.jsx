@@ -39,7 +39,12 @@ export default function Header({
 				>
 					Delete
 				</button>
-				<button onClick={() => signOut(auth)}>signOUt</button>
+				<button
+					className="sign-out-btn btn-header"
+					onClick={() => signOut(auth)}
+				>
+					Sign out
+				</button>
 			</div>
 		</header>
 	);
