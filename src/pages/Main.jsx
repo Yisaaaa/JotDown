@@ -12,7 +12,6 @@ import {
 	collection,
 	onSnapshot,
 	setDoc,
-	getDoc,
 } from "firebase/firestore";
 
 export default function Main({ user }) {
@@ -23,7 +22,6 @@ export default function Main({ user }) {
 		const unsubscribe = onSnapshot(
 			collection(db, notesCollectionPath),
 			(snapshot) => {
-				console.log("notes has changed");
 				const notesArray = [];
 				snapshot.docs.forEach((doc) => {
 					const note = {
@@ -38,6 +36,8 @@ export default function Main({ user }) {
 
 		return unsubscribe;
 	}, []);
+
+	const [isPreviewShown, setIsPreviewShown] = useState(true);
 
 	const sortedNotes = notes.sort((a, b) => b.updatedAt - a.updatedAt);
 
@@ -137,9 +137,12 @@ export default function Main({ user }) {
 				<Editor
 					key="editor"
 					tempNoteText={tempNoteText}
+					setIsPreviewShown={setIsPreviewShown}
 					setTempNoteText={setTempNoteText}
 				/>
-				<Preview key="preview" tempNoteText={tempNoteText} />
+				{isPreviewShown && (
+					<Preview key="preview" tempNoteText={tempNoteText} />
+				)}
 			</main>
 		</div>
 	);

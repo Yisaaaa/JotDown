@@ -1,9 +1,22 @@
 .editor {
 	height: 100%;
+	background-color: #15161a;
 }
 
 .editor-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 	background-color: #1e1f23;
+}
+
+.editor-header-icons {
+	padding-right: 1.6rem;
+}
+
+.editor-header-icons > * {
+	cursor: pointer;
+	color: #ccc;
 }
 
 .editor-title {
@@ -14,12 +27,13 @@
 }
 
 .text-editor {
+	display: block;
 	width: 100%;
 	height: calc(100% - 37px);
 	resize: none;
-	padding: 1.6rem 2.4rem;
+	background-color: inherit;
+	padding: 1.6rem max(calc((100% - 99rem) / 2), 2.4rem);
 	font-size: 2rem;
-	background-color: #15161a;
 	border: none;
 	border-radius: 0;
 	color: white;
