@@ -10,7 +10,9 @@
 	height: calc(100% - 10.9rem);
 	margin: 0 auto;
 	column-gap: 10rem;
+	row-gap: 6.4rem;
 	align-items: center;
+	align-content: center;
 	/* align-content: center; */
 	color: #333;
 }
@@ -206,6 +208,89 @@ input:-webkit-autofill:active {
 	font-weight: 500;
 	/* letter-spacing: 1px; */
 	color: #7f1d1d;
+}
+
+@media (max-width: 103em) {
+	.login-container {
+		column-gap: 8rem;
+	}
+}
+
+@media (max-width: 87em) {
+	.login-container {
+		column-gap: 2.4rem;
+	}
+}
+
+@media (max-width: 54em) {
+	.login-left {
+		width: 60%;
+	}
+
+	.login-container {
+		grid-template-columns: 1fr;
+		align-content: start;
+		row-gap: 3.2rem;
+	}
+
+	.login-right {
+		display: none;
+	}
+	.login-form {
+		margin-bottom: 2.4rem;
+	}
+}
+
+@media (max-width: 35em) {
+	.login-left {
+		width: 100%;
+	}
+
+	.login-container {
+		padding: 3.2rem;
+	}
+
+	.auth-alt-container {
+		flex-direction: column;
+		gap: 0.8rem;
+	}
+
+	.logo-login {
+		text-align: center;
+	}
+
+	.login-container {
+		row-gap: 0;
+	}
+}
+
+@media (max-width: 28em) {
+	html {
+		font-size: 56.25%;
+	}
+
+	.welcome-text {
+		padding-inline: 1.6rem;
+	}
+
+	/* .logo-login {
+		padding-bottom: 0;
+	} */
+
+	.or {
+		margin-block: 0.8rem;
+	}
+}
+
+@media (max-width: 25em) {
+	.login-container {
+		padding-inline: 1.6rem;
+		padding-bottom: 0;
+	}
+
+	.auth-alt-text {
+		text-align: center;
+	}
 }
 
 /*
