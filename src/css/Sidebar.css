@@ -16,11 +16,11 @@
 }
 
 .hamburger-container {
+	background-color: #35383e;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	padding-left: 1.6rem;
-	margin-bottom: 6.4rem;
 }
 
 .sidebar .hamburger {
@@ -28,12 +28,30 @@
 }
 
 .notes {
+	margin-top: 6.4rem;
 	overflow: auto;
 	list-style: none;
 }
 
 .selected {
 	background-color: #3a3b40;
+}
+
+.sidebar .header-nav {
+	display: none;
+	padding: 1.2rem 0 1.6rem;
+	background-color: #35383e;
+	gap: 1.6rem;
+}
+
+@media (max-width: 49em) {
+	.sidebar .header-nav {
+		display: flex;
+	}
+}
+
+.sidebar .header-nav > button {
+	font-size: 1.2rem;
 }
 
 /*

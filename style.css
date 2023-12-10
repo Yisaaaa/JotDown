@@ -37,6 +37,12 @@ body {
 	column-gap: 0.4rem;
 }
 
+@media (max-width: 28em) {
+	.main {
+		height: calc(100% - 46.6833px);
+	}
+}
+
 .wrapper {
 	height: 100%;
 }

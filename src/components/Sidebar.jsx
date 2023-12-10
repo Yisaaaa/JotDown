@@ -2,6 +2,7 @@ import React from "react";
 import "../css/Sidebar.css";
 import MenuIcon from "@mui/icons-material/Menu";
 import Note from "./Note";
+import HeaderNav from "./HeaderNav";
 
 export default function Sidebar({
 	sidebarActive,
@@ -10,6 +11,8 @@ export default function Sidebar({
 	selectedNote,
 	setSelectedNote,
 	notesCollectionPath,
+	createNote,
+	deleteNote,
 }) {
 	const noteComponents = notes.map((note) => {
 		return (
@@ -34,6 +37,11 @@ export default function Sidebar({
 					<MenuIcon fontSize="large"></MenuIcon>
 				</button>
 			</div>
+			<HeaderNav
+				iconsOnly={true}
+				createNote={createNote}
+				deleteNote={deleteNote}
+			/>
 			<ul className="notes">{noteComponents}</ul>
 		</div>
 	);

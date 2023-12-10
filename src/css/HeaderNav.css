@@ -1,0 +1,13 @@
+.btn-header {
+	background-color: #35383e;
+	border: none;
+	color: white;
+	padding: 0.8rem 1.6rem;
+	font-weight: 600;
+	border-radius: 4px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	gap: 0.8rem;
+	line-height: 1;
+}

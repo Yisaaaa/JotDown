@@ -15,6 +15,20 @@ import {
 } from "firebase/firestore";
 
 export default function Main({ user }) {
+	const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+	const isSmallScreen = windowWidth <= 700;
+
+	function handleResize() {
+		setWindowWidth(window.innerWidth);
+	}
+	useEffect(() => {
+		window.addEventListener("resize", handleResize);
+
+		return () => {
+			window.removeEventListener("resize", handleResize);
+		};
+	}, []);
+
 	const notesCollectionPath = `usersCollection/${user.uid}/notesCollection`;
 
 	const [notes, setNotes] = useState([]);
@@ -121,7 +135,6 @@ export default function Main({ user }) {
 		setIsInViewMode((prevIsInViewMode) => !prevIsInViewMode);
 	}
 
-	console.log(isPreviewShown);
 	return (
 		<div className="wrapper" onClick={closeSideBarIfOpen}>
 			<Header
@@ -138,6 +151,8 @@ export default function Main({ user }) {
 					sidebarActive={sidebarActive}
 					toggleSidebar={toggleSidebar}
 					notesCollectionPath={notesCollectionPath}
+					createNote={createNote}
+					deleteNote={deleteNote}
 				></Sidebar>
 
 				{!isInViewMode && (
@@ -150,7 +165,7 @@ export default function Main({ user }) {
 					/>
 				)}
 
-				{(isPreviewShown || isInViewMode) && (
+				{((isPreviewShown && !isSmallScreen) || isInViewMode) && (
 					<Preview
 						key="preview"
 						isInViewMode={isInViewMode}
