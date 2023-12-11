@@ -18,6 +18,7 @@ function Login({ isLogin }) {
 		"auth/invalid-email": "Please enter your email",
 		"auth/missing-password": "Please enter your password",
 		"auth/invalid-login-credentials": "Email or password is incorrect",
+		"auth/email-already-in-use": "Email is already in use.",
 	};
 	const [loader, setLoader] = useState(false);
 	const [error, setError] = useState("");
@@ -34,13 +35,11 @@ function Login({ isLogin }) {
 			if (isLogin) {
 				await signInWithEmailAndPassword(auth, email, pass);
 			} else {
-				console.log("creating account");
 				await createUserWithEmailAndPassword(auth, email, pass);
 			}
 			setError("");
 			navigate("/");
 		} catch (error) {
-			console.log(error.code);
 			setError(ERRORS[error.code]);
 		} finally {
 			setLoader(false);
@@ -54,6 +53,7 @@ function Login({ isLogin }) {
 	}
 
 	function handleAuthAltBtn() {
+		setError("");
 		if (isLogin) {
 			navigate("/create-account");
 		} else {
@@ -72,8 +72,7 @@ function Login({ isLogin }) {
 								? "Welcome back to JotDown 👋"
 								: "Create account"}
 						</p>
-
-						{isLogin && error && (
+						{error && (
 							<div className="error-container">
 								<WarningIcon
 									sx={{ fontSize: 24, color: red[600] }}
