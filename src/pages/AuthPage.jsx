@@ -40,7 +40,10 @@ function Login({ isLogin }) {
 			setError("");
 			navigate("/");
 		} catch (error) {
-			setError(ERRORS[error.code]);
+			const stringError = ERRORS[error.code]
+				? ERRORS[error.code]
+				: "There was an error.";
+			setError(stringError);
 		} finally {
 			setLoader(false);
 		}
